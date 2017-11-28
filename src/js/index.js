@@ -6,14 +6,39 @@ import '../css/index/index.css';
 
 $(document).ready(() => {
 	$('#upload-html').on('click', () => {
-		const newMetaBlob = createMetaHtml();
+		const metaData = {
+			title: $(`[name='meta-title']`).val(),
+			description: $(`[name='meta-description']`).val(),
+			image: $(`[name='meta-image']`).val(),
+		};
 
-		uploadHtml(newMetaBlob).then((snapshot) => {
+		if (!metaData.title) {
+			return;
+		}
+
+		if (!metaData.description) {
+			return;
+		}
+
+		if (!metaData.image) {
+			return;
+		}
+
+		uploadHtml(createMetaHtml(metaData)).then((snapshot) => {
 			/**
 			 * get file url
 			 */
 
-			console.log(snapshot);
+			if (!snapshot.downloadURL) {
+				$('.preview .link a').attr('href', '');
+				$('.preview .link').removeClass('_show');
+
+				return;
+			}
+
+			$('.preview .link a').attr('href', snapshot.downloadURL);
+			$('.preview .link a').text(snapshot.downloadURL);
+			$('.preview .link').addClass('_show');
 		});
 	});
 
@@ -27,6 +52,8 @@ $(document).ready(() => {
 		}, false);
 
 		if (file) {
+			$('.preview .card').addClass('_show');
+
 			reader.readAsDataURL(file);
 
 			uploadImage(file).then((snapshot) => {
@@ -39,9 +66,19 @@ $(document).ready(() => {
 		}
 	});
 
-	$('.form input, .form textarea').on('change', function () {
+	$(`[name='meta-title']`).on('keydown', function () {
 		if ($(this).val()) {
 			$('.preview .card').addClass('_show');
 		}
+
+		$('.card .title').text($(this).val());
+	});
+
+	$(`[name='meta-description']`).on('keydown', function () {
+		if ($(this).val()) {
+			$('.preview .card').addClass('_show');
+		}
+
+		$('.card .description').text($(this).val());
 	});
 });

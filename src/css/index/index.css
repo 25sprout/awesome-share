@@ -107,8 +107,11 @@ body {
 			}
 
 			& .cover {
-				min-height: 200px;
+				min-height: 80px;
+				max-height: 240px;
+				overflow: hidden;
 				border-bottom: #F4EBEA 1px solid;
+				line-height: 0;
 
 				& > img {
 					width: 100%;
@@ -131,6 +134,23 @@ body {
 				opacity: 0.6;
 				font-size: 13px;
 				min-height: 13px;
+			}
+		}
+
+		& .link {
+			padding: 20px;
+			background-color: #C4E9E5;
+			opacity: 0;
+			border-radius: 10px;
+
+			& > a {
+				color: #493B37;
+				text-decoration: underline;
+				font-size: 20px;
+			}
+
+			&._show {
+				opacity: 1;
 			}
 		}
 	}
