@@ -17,7 +17,8 @@
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.build.babel.js",
     "postbuild": "node sitemap.js && npm run clean:manifest",
     "release": "standard-version",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "deploy": "node gh-pages.js"
   },
   "repository": {
     "type": "git",
@@ -51,6 +52,7 @@
     "eslint-plugin-import": "^2.8.0",
     "extract-text-webpack-plugin": "^2.1.2",
     "file-loader": "^0.9.0",
+    "gh-pages": "^1.1.0",
     "html-webpack-inline-source-plugin": "^0.0.9",
     "html-webpack-plugin": "^2.24.1",
     "inquirer": "^1.2.3",
