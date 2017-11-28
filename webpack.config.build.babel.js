@@ -23,7 +23,7 @@ const webpackBuildConfig = {
 		publicPath: websiteJson.multiLanguage ?
 			(websiteJson.domain.asset.value ? `//${websiteJson.domain.asset.value}/` : '/assets/')
 		:
-			'/',
+			'/awesome-share/',
 	},
 	module: {
 		rules: base.module.rules.concat(
