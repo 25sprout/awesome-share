@@ -26,20 +26,22 @@ html(lang='zh-Hant')
 					.section-title SHARE
 					.group.url
 						label Url
-						input(type='url')
+						input.field(type='url' name='meta-url')
 					.group.title
 						label Title
-						input(type='input')
+						input.field(type='input' name='meta-title')
 					.group.description
 						label Description
-						textarea
+						textarea.field(name='meta-description')
 					.group.image
-						input(type='file')
+						input.image-upload(type='file')
+						input(type='hidden' name='meta-image')
 					.group
 						#upload-html.button GO
 
 				.preview
 					.card
 						.cover
+							img
 						.title
 						.description

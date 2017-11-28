@@ -70,15 +70,13 @@ body {
 				display: block;
 			}
 
-			& input,
-			& textarea {
+			& .field {
 				font-size: 16px;
 				width: 100%;
 				border: none;
 				box-shadow: none;
 				box-sizing: border-box;
 				padding: 12px;
-				background: #FFF;
 			}
 		}
 
@@ -90,6 +88,7 @@ body {
 			text-align: center;
 			padding: 10px 15px;
 			margin-top: 30px;
+			cursor: pointer;
 		}
 	}
 
@@ -110,6 +109,11 @@ body {
 			& .cover {
 				min-height: 200px;
 				border-bottom: #F4EBEA 1px solid;
+
+				& > img {
+					width: 100%;
+					height: auto;
+				}
 			}
 
 			& .title,
