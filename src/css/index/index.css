@@ -1,1 +1,94 @@
 @import '../common.css';
+@import url('https://fonts.googleapis.com/css?family=Sriracha');
+
+body {
+	background-color: #C4E9E5;
+	color: #493B37;
+	font-family: 'Sriracha';
+	overflow: hidden;
+}
+
+.container {
+	width: 100%;
+	margin: 0 auto;
+
+	& .section-title {
+		color: #FFF;
+		font-size: 30px;
+		font-weight: bold;
+	}
+}
+
+.feature {
+	width: 50%;
+	padding: 50px 30px 50px 120px;
+	box-sizing: border-box;
+
+	& .logo {
+		display: inline-block;
+		padding: 10px;
+		background: #8FD5CD;
+		color: #FFF;
+	}
+
+	& .recent {
+		margin-top: 120px;
+
+		& .list {
+			& > div {
+				margin-bottom: 10px;
+				background: #FFF;
+			}
+		}
+	}
+}
+
+.creator {
+	display: flex;
+	position: fixed;
+	width: calc(100vw - 100px);
+	left: calc(50vw + 90px);
+	top: 0;
+	max-height: calc(100vh - 100px);
+	background-color: #B5E3DE;
+	margin: 50px;
+	box-sizing: border-box;
+	padding: 30px;
+	border: #FFF 4px solid;
+	border-radius: 4px;
+
+	& .form {
+		width: 40%;
+		margin-right: 30px;
+
+		& .group {
+			margin-bottom: 10px;
+
+			& label {
+				display: block;
+			}
+
+			& input,
+			& textarea {
+				width: 100%;
+				border: none;
+				box-shadow: none;
+				box-sizing: border-box;
+				padding: 16px;
+			}
+		}
+
+		& .button {
+			width: 100%;
+			box-sizing: border-box;
+			color: #FFF;
+			background-color: #8FD5CD;
+			text-align: center;
+			padding: 10px 15px;
+		}
+	}
+
+	& .preview {
+		width: 50%;
+	}
+}

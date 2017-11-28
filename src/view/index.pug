@@ -7,4 +7,33 @@ html(lang='zh-Hant')
 
 	body
 
-		button#upload-html 我要上傳
+		.container
+
+			.feature
+				.logo
+					| AWESOME
+					br
+					| SHARE
+				.recent
+					.section-title RECENT
+					.list
+						div A
+						div B
+						div C
+
+			.creator
+				.form
+					.section-title SHARE
+					.group.url
+						label Url
+						input(type='url')
+					.group.title
+						label Title
+						input(type='input')
+					.group.description
+						label Description
+						textarea
+					.group.image
+						input(type='file')
+					#upload-html.button GO
+				.preview
