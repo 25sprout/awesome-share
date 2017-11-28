@@ -8,7 +8,7 @@
     "lint:css": "stylelint src/css/*.css src/css/**/*.css --config .stylelintrc.json",
     "lint": "npm run lint:css && npm run lint:js",
     "clean": "rm -rf build coverage npm-debug.log",
-    "clean:manifest": "rm build/**/manifest.*",
+    "clean:manifest": "rm build/manifest.*",
     "dev": "cross-env NODE_ENV=dev babel-node server.js",
     "predemo": "npm run clean",
     "demo": "cross-env NODE_ENV=demo webpack --config webpack.config.build.babel.js",
