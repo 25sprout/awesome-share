@@ -15,7 +15,7 @@ body {
 
 	& .section-title {
 		color: #FFF;
-		font-size: 30px;
+		font-size: 24px;
 		font-weight: bold;
 	}
 }
@@ -26,10 +26,14 @@ body {
 	box-sizing: border-box;
 
 	& .logo {
-		display: inline-block;
+		width: 160px;
+		height: 160px;
 		padding: 10px;
 		background: #8FD5CD;
 		color: #FFF;
+		font-size: 30px;
+		line-height: 40px;
+		text-align: justify;
 	}
 
 	& .recent {
