@@ -18,7 +18,7 @@
     "postbuild": "node sitemap.js && npm run clean:manifest",
     "release": "standard-version",
     "commit": "git-cz",
-    "deploy": "node gh-pages.js"
+    "deploy": "npm run build && node gh-pages.js"
   },
   "repository": {
     "type": "git",
