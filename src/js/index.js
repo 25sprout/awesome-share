@@ -1,1 +1,8 @@
-import '../css/index/welcome.css';
+import $ from 'jquery';
+import '../css/index/index.css';
+
+$(document).ready(() => {
+	$('#upload-html').on('click', () => {
+
+	});
+});
