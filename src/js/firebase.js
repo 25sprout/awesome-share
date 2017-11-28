@@ -25,4 +25,10 @@ export const uploadHtml = (metaBlob) => {
 		.put(metaBlob);
 };
 
+export const saveMetaData = (metaData) => (
+	firebase.database()
+		.ref('meta')
+		.push(metaData)
+);
+
 export default firebaseDatabase;

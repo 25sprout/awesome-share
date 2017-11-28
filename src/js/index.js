@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { uploadHtml, uploadImage } from './firebase';
+import { uploadHtml, uploadImage, saveMetaData } from './firebase';
 import createMetaHtml from './meta';
 
 import '../css/index/index.css';
@@ -35,7 +35,6 @@ $(document).ready(() => {
 		 */
 		$('#upload-html').addClass('loading');
 
-
 		/**
 		 * upload html
 		 */
@@ -55,6 +54,16 @@ $(document).ready(() => {
 			$('.preview .link a').attr('href', snapshot.downloadURL);
 			$('.preview .link a').text(snapshot.downloadURL);
 			$('.preview .link').addClass('_show');
+
+			/**
+			 * save to database
+			 */
+
+			metaData.file = snapshot.downloadURL;
+
+			saveMetaData(metaData).then((response) => {
+				console.log(`save to databse with key ${response.key}`);
+			});
 		});
 	});
 
