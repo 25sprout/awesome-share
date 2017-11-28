@@ -1,11 +1,41 @@
 import $ from 'jquery';
-import { uploadHtml, uploadImage, saveMetaData } from './firebase';
+import firebaseDatabase, { uploadHtml, uploadImage, saveMetaData } from './firebase';
 import createMetaHtml from './meta';
 
 import '../css/index/index.css';
 import '../../node_modules/font-awesome/css/font-awesome.css';
 
+const drawRecentList = (snapshot) => {
+	snapshot.forEach((childSnapshot) => {
+		const metaObjectKey = childSnapshot.key;
+		const metaObject = childSnapshot.val();
+
+		console.log(metaObjectKey);
+		console.log(metaObject);
+
+		const newMetaObject = $('.meta-object-template')
+			.clone().removeClass('meta-object-template');
+
+		newMetaObject.find('.cover').append(`<img src='${metaObject.image}' />`);
+		newMetaObject.find('.title').text(metaObject.title);
+		newMetaObject.find('.link a').attr('href', metaObject.file);
+		newMetaObject.find('.link a').text(metaObject.file);
+
+		$('.recent .list').append(newMetaObject);
+	});
+};
+
+const getLinkLists = () => (
+	firebaseDatabase
+		.ref('meta')
+		.on('value', (snapshot) => {
+			drawRecentList(snapshot);
+		})
+);
+
 $(document).ready(() => {
+	getLinkLists();
+
 	$('#upload-html').on('click', () => {
 		if ($('#upload-html').hasClass('loading')) {
 			return;
