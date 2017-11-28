@@ -1,0 +1,21 @@
+{
+	"disallowClassLiteralsBeforeIdLiterals": true,
+	"disallowDuplicateAttributes": true,
+	"disallowHtmlText": true,
+	"disallowIdAttributeWithStaticValue": true,
+	"disallowLegacyMixinCall": true,
+	"disallowMultipleLineBreaks": true,
+	"disallowSpacesInsideAttributeBrackets": true,
+	"requireClassLiteralsBeforeAttributes": true,
+	"requireIdLiteralsBeforeAttributes": true,
+	"requireLineFeedAtFileEnd": true,
+	"requireLowerCaseAttributes": true,
+	"requireLowerCaseTags": true,
+	"requireSpaceAfterCodeOperator": true,
+	"requireStrictEqualityOperators": true,
+	"validateAttributeQuoteMarks": "'",
+	"validateAttributeSeparator": " ",
+	"validateDivTags": true,
+	"validateIndentation": "\t",
+	"validateTemplateString": true
+}

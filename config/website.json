@@ -1,0 +1,28 @@
+{
+	"domain": {
+		"demo": {
+			"value": "demo.example.com",
+			"ssl": false
+		},
+		"production": {
+			"value": "www.example.com",
+			"ssl": false
+		},
+		"asset": {
+			"value": "assets.example.com",
+			"ssl": false
+		}
+	},
+	"multiLanguage": false,
+	"visitRootFolder": true,
+	"pages": {
+		"index": {
+			"entry": "index"
+		}
+	},
+	"port": {
+		"webpackServer": 3000,
+		"browserSyncServer": 8080
+	},
+	"GA": "WHERE-IS-YOUR-GA-CODE"
+}

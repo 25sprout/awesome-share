@@ -1,0 +1,91 @@
+{
+  "name": "awesome-share",
+  "version": "1.0.0",
+  "description": "Generate meta page for your share links for social media sharing",
+  "scripts": {
+    "test": "jest --coverage",
+    "lint:js": "eslint src/js __tests__ --config .eslintrc.json",
+    "lint:css": "stylelint src/css/*.css src/css/**/*.css --config .stylelintrc.json",
+    "lint": "npm run lint:css && npm run lint:js",
+    "clean": "rm -rf build coverage npm-debug.log",
+    "clean:manifest": "rm build/**/manifest.*",
+    "dev": "cross-env NODE_ENV=dev babel-node server.js",
+    "predemo": "npm run clean",
+    "demo": "cross-env NODE_ENV=demo webpack --config webpack.config.build.babel.js",
+    "postdemo": "npm run clean:manifest",
+    "prebuild": "npm run clean",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.config.build.babel.js",
+    "postbuild": "node sitemap.js && npm run clean:manifest",
+    "release": "standard-version",
+    "commit": "git-cz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://fox.25sprout.com:10088/frontend/pug-starter.git"
+  },
+  "keywords": [
+    "25sprout",
+    "Starter",
+    "Pug"
+  ],
+  "author": "Eddie Wen <eddiewen.tw@gmail.com> (http://eddiewen.me)",
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.18.2",
+    "babel-eslint": "^8.0.2",
+    "babel-loader": "^6.2.7",
+    "babel-plugin-syntax-trailing-function-commas": "^6.22.0",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-es2015": "^6.18.0",
+    "browser-sync": "^2.18.1",
+    "browser-sync-webpack-plugin": "^1.1.3",
+    "commitizen": "^2.9.6",
+    "copy-webpack-plugin": "^4.0.1",
+    "cross-env": "^3.1.3",
+    "css-loader": "^0.25.0",
+    "cz-conventional-changelog": "^2.0.0",
+    "eslint": "^4.10.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-import": "^2.8.0",
+    "extract-text-webpack-plugin": "^2.1.2",
+    "file-loader": "^0.9.0",
+    "html-webpack-inline-source-plugin": "^0.0.9",
+    "html-webpack-plugin": "^2.24.1",
+    "inquirer": "^1.2.3",
+    "jest": "^17.0.3",
+    "postcss": "^5.2.5",
+    "postcss-cssnext": "^2.8.0",
+    "postcss-extend": "^1.0.5",
+    "postcss-import": "^11.0.0",
+    "postcss-loader": "^1.1.1",
+    "postcss-mixins": "^5.4.0",
+    "pug": "^2.0.0-beta6",
+    "pug-lint": "^2.4.0",
+    "pug-lint-loader": "^0.0.4",
+    "pug-loader": "^2.3.0",
+    "regenerator-runtime": "^0.11.0",
+    "standard-version": "^4.0.0",
+    "style-loader": "^0.13.1",
+    "stylelint": "^7.9.0",
+    "stylelint-config-standard": "^16.0.0",
+    "stylelint-order": "^0.4.1",
+    "stylelint-webpack-plugin": "^0.7.0",
+    "svgo-loader": "^1.1.2",
+    "url-loader": "^0.5.7",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.5"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.23.0",
+    "jquery": "^3.1.1",
+    "whatwg-fetch": "^2.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "private": true
+}
