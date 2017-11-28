@@ -80,15 +80,27 @@ body {
 			}
 		}
 
+		& .upload {
+			color: #FFF;
+			text-align: center;
+		}
+
 		& .button {
 			width: 100%;
 			box-sizing: border-box;
-			color: #FFF;
 			background-color: #8FD5CD;
-			text-align: center;
 			padding: 10px 15px;
 			margin-top: 30px;
 			cursor: pointer;
+
+			& i {
+				display: none;
+				margin-right: 5px;
+			}
+
+			&.loading i {
+				display: inline-block;
+			}
 		}
 	}
 
@@ -100,7 +112,7 @@ body {
 			border-radius: 2px;
 			margin: 30px;
 			padding: 0 0 10px;
-			opacity: 0.2;
+			opacity: 0.7;
 
 			&._show {
 				opacity: 1;
@@ -110,12 +122,25 @@ body {
 				min-height: 80px;
 				max-height: 240px;
 				overflow: hidden;
-				border-bottom: #F4EBEA 1px solid;
 				line-height: 0;
+				position: relative;
 
 				& > img {
 					width: 100%;
 					height: auto;
+				}
+
+				& > i {
+					display: none;
+					position: absolute;
+					top: 40px;
+					left: 50%;
+					margin-left: -5px;
+					color: #B5E3DE;
+				}
+
+				&.loading > i {
+					display: inline-block;
 				}
 			}
 
@@ -146,7 +171,7 @@ body {
 			& > a {
 				color: #493B37;
 				text-decoration: underline;
-				font-size: 20px;
+				font-size: 14px;
 			}
 
 			&._show {

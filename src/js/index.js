@@ -3,9 +3,14 @@ import { uploadHtml, uploadImage } from './firebase';
 import createMetaHtml from './meta';
 
 import '../css/index/index.css';
+import '../../node_modules/font-awesome/css/font-awesome.css';
 
 $(document).ready(() => {
 	$('#upload-html').on('click', () => {
+		if ($('#upload-html').hasClass('loading')) {
+			return;
+		}
+
 		const metaData = {
 			title: $(`[name='meta-title']`).val(),
 			description: $(`[name='meta-description']`).val(),
@@ -25,10 +30,20 @@ $(document).ready(() => {
 			return;
 		}
 
+		/**
+		 * set loading status
+		 */
+		$('#upload-html').addClass('loading');
+
+
+		/**
+		 * upload html
+		 */
 		uploadHtml(createMetaHtml(metaData)).then((snapshot) => {
 			/**
 			 * get file url
 			 */
+			$('#upload-html').removeClass('loading');
 
 			if (!snapshot.downloadURL) {
 				$('.preview .link a').attr('href', '');
@@ -44,6 +59,8 @@ $(document).ready(() => {
 	});
 
 	$('.image-upload').on('change', () => {
+		$('.preview .cover').addClass('loading');
+
 		const preview = document.querySelector('img');
 		const file = document.querySelector('input[type=file]').files[0];
 		const reader = new FileReader();
@@ -53,16 +70,19 @@ $(document).ready(() => {
 		}, false);
 
 		if (file) {
-			$('.preview .card').addClass('_show');
-
-			reader.readAsDataURL(file);
-
 			uploadImage(file).then((snapshot) => {
 				/**
 				 * get file url
 				 */
-
 				$(`[name='meta-image']`).val(snapshot.downloadURL);
+
+				/**
+				 * preview cover for user
+				 */
+				reader.readAsDataURL(file);
+
+				$('.preview .cover').removeClass('loading');
+				$('.preview .card').addClass('_show');
 			});
 		}
 	});

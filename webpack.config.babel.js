@@ -92,7 +92,10 @@ const webpackBaseConfig = {
 		],
 		cssRule: {
 			test: /\.css$/,
-			include: /src\/css/,
+			include: [
+				/src\/css/,
+				/node_modules\/font-awesome/,
+			],
 			use: {
 				css: 'css-loader',
 				postcss: 'postcss-loader',
