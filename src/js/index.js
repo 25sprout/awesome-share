@@ -10,6 +10,7 @@ $(document).ready(() => {
 			title: $(`[name='meta-title']`).val(),
 			description: $(`[name='meta-description']`).val(),
 			image: $(`[name='meta-image']`).val(),
+			url: $(`[name='meta-url']`).val(),
 		};
 
 		if (!metaData.title) {
