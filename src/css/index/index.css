@@ -9,6 +9,7 @@ body {
 }
 
 .container {
+	display: flex;
 	width: 100%;
 	margin: 0 auto;
 
@@ -20,7 +21,7 @@ body {
 }
 
 .feature {
-	width: 50%;
+	width: 30%;
 	padding: 50px 30px 50px 120px;
 	box-sizing: border-box;
 
@@ -45,21 +46,22 @@ body {
 
 .creator {
 	display: flex;
-	position: fixed;
-	width: calc(100vw - 100px);
-	left: calc(50vw + 90px);
-	top: 0;
+	width: 70%;
 	max-height: calc(100vh - 100px);
 	background-color: #B5E3DE;
 	margin: 50px;
 	box-sizing: border-box;
-	padding: 30px;
 	border: #FFF 4px solid;
 	border-radius: 4px;
 
+	& .form,
+	& .preview {
+		padding: 20px 30px;
+	}
+
 	& .form {
-		width: 40%;
-		margin-right: 30px;
+		width: 50%;
+		box-sizing: border-box;
 
 		& .group {
 			margin-bottom: 10px;
@@ -70,11 +72,13 @@ body {
 
 			& input,
 			& textarea {
+				font-size: 16px;
 				width: 100%;
 				border: none;
 				box-shadow: none;
 				box-sizing: border-box;
-				padding: 16px;
+				padding: 12px;
+				background: #FFF;
 			}
 		}
 
@@ -85,10 +89,45 @@ body {
 			background-color: #8FD5CD;
 			text-align: center;
 			padding: 10px 15px;
+			margin-top: 30px;
 		}
 	}
 
 	& .preview {
 		width: 50%;
+
+		& .card {
+			background: #FFF;
+			border-radius: 2px;
+			margin: 30px;
+			padding: 0 0 10px;
+			opacity: 0.2;
+
+			&._show {
+				opacity: 1;
+			}
+
+			& .cover {
+				min-height: 200px;
+				border-bottom: #F4EBEA 1px solid;
+			}
+
+			& .title,
+			& .description {
+				padding: 8px 12px 0;
+				line-height: 1.2;
+			}
+
+			& .title {
+				font-size: 18px;
+				min-height: 18px;
+			}
+
+			& .description {
+				opacity: 0.6;
+				font-size: 13px;
+				min-height: 13px;
+			}
+		}
 	}
 }
