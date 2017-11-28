@@ -28,3 +28,33 @@
 	overflow: hidden;
 	clear: both;
 }
+
+::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+	padding: 0;
+	background-color: transparent;
+}
+
+::-webkit-scrollbar-button {
+	display: none;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-track-piece {
+	background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #C4E9E5;
+	overflow: hidden;
+	border-radius: 6px;
+}
+
+::-webkit-scrollbar-corner {
+	background-color: transparent;
+}
+
+::-webkit-resizer {
+	background-color: transparent;
+}
