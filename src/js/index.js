@@ -61,30 +61,23 @@ $(document).ready(() => {
 	$('.image-upload').on('change', () => {
 		$('.preview .cover').addClass('loading');
 
-		const preview = document.querySelector('img');
 		const file = document.querySelector('input[type=file]').files[0];
-		const reader = new FileReader();
-
-		reader.addEventListener('load', () => {
-			preview.src = reader.result;
-		}, false);
 
 		if (file) {
 			uploadImage(file).then((snapshot) => {
 				/**
 				 * get file url
 				 */
-				$(`[name='meta-image']`).val(snapshot.downloadURL);
-
-				/**
-				 * preview cover for user
-				 */
-				reader.readAsDataURL(file);
+				$(`[name='meta-image']`).val(snapshot.downloadURL).change();
 
 				$('.preview .cover').removeClass('loading');
 				$('.preview .card').addClass('_show');
 			});
 		}
+	});
+
+	$(`[name='meta-image']`).on('change', function () {
+		$('.preview .cover img').attr('src', $(this).val());
 	});
 
 	$(`[name='meta-title']`).on('keydown', function () {
