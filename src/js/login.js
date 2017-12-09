@@ -93,6 +93,10 @@ const authAction = () => {
 	detectUserStatus();
 
 	$('.login-wrapper > div').on('click', function () {
+		if ($(this).hasClass('active')) {
+			return;
+		}
+
 		if ($(this).attr('rel') !== 'login') {
 			signinGuest();
 
