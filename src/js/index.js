@@ -9,6 +9,9 @@ import '../css/index/index.css';
 import '../../node_modules/font-awesome/css/font-awesome.css';
 
 const drawRecentList = (snapshot) => {
+	$('.recent .list').addClass('loading');
+	$('.recent .list .meta-object').not('.meta-object-template').remove();
+
 	snapshot.forEach((childSnapshot) => {
 		const metaObjectKey = childSnapshot.key;
 		const metaObject = childSnapshot.val();
@@ -29,17 +32,23 @@ const drawRecentList = (snapshot) => {
 
 		$('.recent .list').append(newMetaObject);
 	});
+
+	$('.recent .list').removeClass('loading');
+};
+
+const offLinkLists = () => {
+	firebaseDatabase
+		.ref(config.user)
+		.off('value', drawRecentList);
 };
 
 const getLinkLists = () => {
+	$('.recent .list .meta-object').not('.meta-object-template').remove();
+
 	firebaseDatabase
 		.ref(config.user)
 		.orderByChild('update')
-		.on('value', (snapshot) => {
-			$('.recent .list .meta-object').not('.meta-object-template').remove();
-
-			drawRecentList(snapshot);
-		});
+		.on('value', drawRecentList);
 };
 
 const authAction = () => {
@@ -53,6 +62,7 @@ const authAction = () => {
 			config.user = 'cathy';
 		}
 
+		offLinkLists();
 		getLinkLists();
 	});
 };
