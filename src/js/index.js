@@ -67,11 +67,7 @@ const listAction = () => {
 	});
 };
 
-$(document).ready(() => {
-	getLinkLists();
-	authAction();
-	listAction();
-
+const formAction = () => {
 	$('#upload-html').on('click', () => {
 		if ($('#upload-html').hasClass('loading')) {
 			return;
@@ -183,4 +179,11 @@ $(document).ready(() => {
 
 		$('.card .description').text($(this).val());
 	});
+};
+
+$(document).ready(() => {
+	getLinkLists();
+	authAction();
+	listAction();
+	formAction();
 });
