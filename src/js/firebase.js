@@ -1,5 +1,6 @@
 import * as firebase from 'firebase';
 import { config, firebaseConfig } from './appConfig';
+import { isGuest } from './common';
 
 firebase.initializeApp(firebaseConfig);
 
@@ -30,5 +31,16 @@ export const saveMetaData = (metaData) => (
 		.ref(config.user)
 		.push(metaData)
 );
+
+export const deleteMetaData = (dataKey) => {
+	if (isGuest()) {
+		return;
+	}
+
+	firebase.database()
+		.ref(config.user)
+		.child(dataKey)
+		.remove();
+};
 
 export default firebaseDatabase;

@@ -1,8 +1,9 @@
 import $ from 'jquery';
-import firebaseDatabase, { uploadHtml, uploadImage, saveMetaData } from './firebase';
+import firebaseDatabase, { uploadHtml, uploadImage, saveMetaData, deleteMetaData } from './firebase';
 import createMetaHtml from './meta';
 import getTimestamp from './time';
 import { config } from './appConfig';
+import { isGuest } from './common';
 
 import '../css/index/index.css';
 import '../../node_modules/font-awesome/css/font-awesome.css';
@@ -12,12 +13,14 @@ const drawRecentList = (snapshot) => {
 		const metaObjectKey = childSnapshot.key;
 		const metaObject = childSnapshot.val();
 
-		console.log(metaObjectKey);
-		console.log(metaObject);
-
 		const newMetaObject = $('.meta-object-template')
 			.clone().removeClass('meta-object-template');
 
+		if (isGuest()) {
+			newMetaObject.find('.controls').remove();
+		}
+
+		newMetaObject.attr('data-key', metaObjectKey);
 		newMetaObject.find('.cover').append(`<img src='${metaObject.image}' />`);
 		newMetaObject.find('.title').text(metaObject.title);
 		newMetaObject.find('.description').text(metaObject.description);
@@ -39,8 +42,35 @@ const getLinkLists = () => {
 		});
 };
 
+const authAction = () => {
+	$('.login-wrapper > div').on('click', function () {
+		$('.login-wrapper > div').removeClass('active');
+		$(this).addClass('active');
+
+		if ($(this).attr('rel') !== 'cathy') {
+			config.user = 'guest';
+		} else {
+			config.user = 'cathy';
+		}
+
+		getLinkLists();
+	});
+};
+
+const listAction = () => {
+	$('body').on('click', '.meta-object .delete', function () {
+		deleteMetaData(
+			$(this)
+				.parents('.meta-object')
+				.attr('data-key'),
+		);
+	});
+};
+
 $(document).ready(() => {
 	getLinkLists();
+	authAction();
+	listAction();
 
 	$('#upload-html').on('click', () => {
 		if ($('#upload-html').hasClass('loading')) {
