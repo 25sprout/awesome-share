@@ -5,74 +5,15 @@ import 'font-awesome/css/font-awesome.css';
 import 'vex-js/dist/css/vex.css';
 import 'vex-js/dist/css/vex-theme-wireframe.css';
 
-import firebaseDatabase, { uploadHtml, uploadImage, saveMetaData, deleteMetaData } from './firebase';
+import { uploadHtml, uploadImage, saveMetaData, deleteMetaData } from './firebase';
 import createMetaHtml from './meta';
 import getTimestamp from './time';
-import { config } from './appConfig';
-import { isGuest } from './common';
+import { getLinkLists } from './recentList';
+import authAction from './login';
 
 import '../css/index/index.css';
 
 vex.defaultOptions.className = 'vex-theme-wireframe';
-
-const drawRecentList = (snapshot) => {
-	$('.recent .list').addClass('loading');
-	$('.recent .list .meta-object').not('.meta-object-template').remove();
-
-	snapshot.forEach((childSnapshot) => {
-		const metaObjectKey = childSnapshot.key;
-		const metaObject = childSnapshot.val();
-
-		const newMetaObject = $('.meta-object-template')
-			.clone().removeClass('meta-object-template');
-
-		if (isGuest()) {
-			newMetaObject.find('.controls').remove();
-		}
-
-		newMetaObject.attr('data-key', metaObjectKey);
-		newMetaObject.find('.cover').append(`<img src='${metaObject.image}' />`);
-		newMetaObject.find('.title').text(metaObject.title);
-		newMetaObject.find('.description').text(metaObject.description);
-		newMetaObject.find('.link a').attr('href', metaObject.file);
-		newMetaObject.find('.link a').text(metaObject.file);
-
-		$('.recent .list').append(newMetaObject);
-	});
-
-	$('.recent .list').removeClass('loading');
-};
-
-const offLinkLists = () => {
-	firebaseDatabase
-		.ref(config.user)
-		.off('value', drawRecentList);
-};
-
-const getLinkLists = () => {
-	$('.recent .list .meta-object').not('.meta-object-template').remove();
-
-	firebaseDatabase
-		.ref(config.user)
-		.orderByChild('update')
-		.on('value', drawRecentList);
-};
-
-const authAction = () => {
-	$('.login-wrapper > div').on('click', function () {
-		$('.login-wrapper > div').removeClass('active');
-		$(this).addClass('active');
-
-		if ($(this).attr('rel') !== 'cathy') {
-			config.user = 'guest';
-		} else {
-			config.user = 'cathy';
-		}
-
-		offLinkLists();
-		getLinkLists();
-	});
-};
 
 const listAction = () => {
 	$('body').on('click', '.meta-object .delete', function () {

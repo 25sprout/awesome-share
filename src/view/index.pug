@@ -6,13 +6,14 @@ html(lang='zh-Hant')
 		include ./common/head.pug
 
 	body
+		include ./common/snackbar.pug
 
 		.container
 
 			.login-wrapper
 				.guest.active(rel='guest')
 					| GUEST
-				.login(rel='cathy')
+				.login(rel='login')
 					| LOGIN
 
 			.feature

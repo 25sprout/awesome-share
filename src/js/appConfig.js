@@ -7,8 +7,8 @@ export const firebaseConfig = {
 	storageBucket: 'awesome-share-fa90c.appspot.com',
 };
 
-export const config = {
-	user: 'guest',
+export const userConfig = {
+	uid: 'guest',
 };
 
 export default 'this is app config';
