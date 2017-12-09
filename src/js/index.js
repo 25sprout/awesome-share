@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import firebaseDatabase, { uploadHtml, uploadImage, saveMetaData } from './firebase';
 import createMetaHtml from './meta';
+import getTimestamp from './time';
 
 import '../css/index/index.css';
 import '../../node_modules/font-awesome/css/font-awesome.css';
@@ -26,13 +27,16 @@ const drawRecentList = (snapshot) => {
 	});
 };
 
-const getLinkLists = () => (
+const getLinkLists = () => {
 	firebaseDatabase
 		.ref('meta')
+		.orderByChild('update')
 		.on('value', (snapshot) => {
+			$('.recent .list .meta-object').not('.meta-object-template').remove();
+
 			drawRecentList(snapshot);
-		})
-);
+		});
+};
 
 $(document).ready(() => {
 	getLinkLists();
@@ -91,6 +95,7 @@ $(document).ready(() => {
 			 */
 
 			metaData.file = snapshot.downloadURL;
+			metaData.update = getTimestamp() * -1;
 
 			saveMetaData(metaData).then((response) => {
 				console.log(`save to databse with key ${response.key}`);
@@ -132,7 +137,7 @@ $(document).ready(() => {
 		$('.preview .cover img').attr('src', $(this).val());
 	});
 
-	$(`[name='meta-title']`).on('keydown', function () {
+	$(`[name='meta-title']`).on('keyup', function () {
 		if ($(this).val()) {
 			$('.preview .card').addClass('_show');
 		}
@@ -140,7 +145,7 @@ $(document).ready(() => {
 		$('.card .title').text($(this).val());
 	});
 
-	$(`[name='meta-description']`).on('keydown', function () {
+	$(`[name='meta-description']`).on('keyup', function () {
 		if ($(this).val()) {
 			$('.preview .card').addClass('_show');
 		}
