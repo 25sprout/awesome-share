@@ -181,9 +181,7 @@ const formAction = () => {
 	});
 };
 
-$(document).ready(() => {
-	getLinkLists();
-	authAction();
-	listAction();
-	formAction();
-});
+getLinkLists();
+authAction();
+listAction();
+formAction();
