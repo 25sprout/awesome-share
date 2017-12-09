@@ -5,7 +5,7 @@ import setSnackBar from './snackbar';
 import { userConfig } from './appConfig';
 import { offLinkLists, getLinkLists } from './recentList';
 
-export const isGuest = () => userConfig.uid === 'guest';
+export const isGuest = () => userConfig.uid === 'X1p273X1a7XSKuoUBATAdjZ7r7a2';
 
 const toggleStatusButton = () => {
 	$('.login-wrapper > div').removeClass('active');
@@ -37,6 +37,10 @@ const signinUser = (email, password) => {
 		});
 };
 
+const signinGuest = () => {
+	signinUser('awesome-share-guest@gmail.com', 'awesome-share-guest');
+};
+
 const getCurrentUser = () => {
 	const { currentUser } = firebase.auth();
 
@@ -62,7 +66,7 @@ export const detectUserStatus = () => {
 			/**
 			 * user is signed out
 			 */
-			changeUser('guest');
+			signinGuest();
 		});
 };
 
@@ -90,16 +94,7 @@ const authAction = () => {
 
 	$('.login-wrapper > div').on('click', function () {
 		if ($(this).attr('rel') !== 'login') {
-			changeUser('guest');
-
-			return;
-		}
-
-		/**
-		 * user click login
-		 */
-		if (getCurrentUser()) {
-			changeUser(getCurrentUser());
+			signinGuest();
 
 			return;
 		}
