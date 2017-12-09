@@ -8,51 +8,63 @@ html(lang='zh-Hant')
 	body
 
 		.container
-
 			.feature
-				.logo
-					| AWESOME
-					br
-					| SHARE
+				.logo AWESOME SHARE
 				.recent
-					.section-title RECENT
+					.section-info
+						.section-title [ RECENT ]
 					.list
 						.meta-object.meta-object-template
+							.controls
+								.delete
+									i.fa.fa-times-circle
 							.cover
 							.data
 								.title
+								.description
 								.link
 									a(target='_blank')
 
 			.creator
 				.form
-					.section-title SHARE
+					.section-info
+						.section-title [ SHARE ]
+						.section-subtitle Make your sharing card here
 					.group.url
-						label Url
-						input.field(type='url' name='meta-url' value='https://youtu.be/H4TSbvA-Ors')
+						label Link
+						input.field(type='url' name='meta-url' placeholder='sharing url')
 					.group.title
 						label Title
-						input.field(type='input' name='meta-title' value='【呱吉】孤獨的美食廢人EP9：滷味 啤酒 療傷系美食')
+						input.field(type='input' name='meta-title' placeholder='page title')
 					.group.description
 						label Description
-						textarea.field(name='meta-description') 人生真的好難，所以要吃療傷系的滷味與啤酒
+						textarea.field(name='meta-description' placeholder='page description')
 					.group.image
 						label Image
-						input.field(type='url' name='meta-image')
-						input.image-upload(type='file')
+						.image-upload-group
+							input.field(type='url' name='meta-image' placeholder='image url')
+							i.fa.fa-cloud-upload
+							input.image-upload(type='file')
 					.group.upload
 						#upload-html.button
 							i.fa.fa-spinner.fa-spin
-							| GO
+							| SAVE & SHARE
 
-				.preview
-					.card
-						.cover
-							img
-							i.fa.fa-spinner.fa-spin
-						.title
-						.description
+				.result
 
-					.link
-						.title LINK
+					.preview
+						.section-info
+							.section-title [ PREIVEW ]
+							.section-subtitle Preview your sharing card here
+						.card
+							.cover
+								img
+								i.fa.fa-spinner.fa-spin
+							.title
+							.description
+
+					.share-link
+						.section-info
+							.section-title [ LINK ]
+							.section-subtitle Get Your Link Here
 						a(target='_blank')

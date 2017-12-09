@@ -18,6 +18,7 @@ const drawRecentList = (snapshot) => {
 
 		newMetaObject.find('.cover').append(`<img src='${metaObject.image}' />`);
 		newMetaObject.find('.title').text(metaObject.title);
+		newMetaObject.find('.description').text(metaObject.description);
 		newMetaObject.find('.link a').attr('href', metaObject.file);
 		newMetaObject.find('.link a').text(metaObject.file);
 
@@ -75,15 +76,15 @@ $(document).ready(() => {
 			$('#upload-html').removeClass('loading');
 
 			if (!snapshot.downloadURL) {
-				$('.preview .link a').attr('href', '');
-				$('.preview .link').removeClass('_show');
+				$('.share-link a').attr('href', '');
+				$('.share-link').removeClass('_show');
 
 				return;
 			}
 
-			$('.preview .link a').attr('href', snapshot.downloadURL);
-			$('.preview .link a').text(snapshot.downloadURL);
-			$('.preview .link').addClass('_show');
+			$('.share-link a').attr('href', snapshot.downloadURL);
+			$('.share-link a').text(snapshot.downloadURL);
+			$('.share-link').addClass('_show');
 
 			/**
 			 * save to database
@@ -97,17 +98,29 @@ $(document).ready(() => {
 		});
 	});
 
+	$('.image-upload-group > i').on('click', () => {
+		$('.image-upload').trigger('click');
+	});
+
 	$('.image-upload').on('change', () => {
 		$('.preview .cover').addClass('loading');
 
 		const file = document.querySelector('input[type=file]').files[0];
 
 		if (file) {
+			$('.image-upload-group i')
+				.removeClass('fa-cloud-upload')
+				.addClass('fa-spinner fa-spin');
+
 			uploadImage(file).then((snapshot) => {
 				/**
 				 * get file url
 				 */
 				$(`[name='meta-image']`).val(snapshot.downloadURL).change();
+
+				$('.image-upload-group i')
+					.addClass('fa-cloud-upload')
+					.removeClass('fa-spinner fa-spin');
 
 				$('.preview .cover').removeClass('loading');
 				$('.preview .card').addClass('_show');

@@ -1,5 +1,8 @@
 {
-	"standard": "",
-	"secondary": "",
-	"darkBlack": "#404040"
+	"white": "#F6F4F6",
+	"lightWhite": "#EBE9EB",
+	"lightGray": "#DCDADB",
+	"gray": "#C5C4C6",
+	"darkGray": "#828085",
+	"black": "#353336"
 }
