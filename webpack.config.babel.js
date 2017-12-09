@@ -95,6 +95,7 @@ const webpackBaseConfig = {
 			include: [
 				/src\/css/,
 				/node_modules\/font-awesome/,
+				/node_modules\/vex-js/,
 			],
 			use: {
 				css: 'css-loader',

@@ -1,4 +1,10 @@
 import $ from 'jquery';
+import vex from 'vex-js/dist/js/vex.combined';
+
+import 'font-awesome/css/font-awesome.css';
+import 'vex-js/dist/css/vex.css';
+import 'vex-js/dist/css/vex-theme-wireframe.css';
+
 import firebaseDatabase, { uploadHtml, uploadImage, saveMetaData, deleteMetaData } from './firebase';
 import createMetaHtml from './meta';
 import getTimestamp from './time';
@@ -6,7 +12,8 @@ import { config } from './appConfig';
 import { isGuest } from './common';
 
 import '../css/index/index.css';
-import '../../node_modules/font-awesome/css/font-awesome.css';
+
+vex.defaultOptions.className = 'vex-theme-wireframe';
 
 const drawRecentList = (snapshot) => {
 	$('.recent .list').addClass('loading');
@@ -69,11 +76,20 @@ const authAction = () => {
 
 const listAction = () => {
 	$('body').on('click', '.meta-object .delete', function () {
-		deleteMetaData(
-			$(this)
-				.parents('.meta-object')
-				.attr('data-key'),
-		);
+		vex.dialog.confirm({
+			message: '確定要刪除嗎？',
+			callback: (value) => {
+				if (!value) {
+					return;
+				}
+
+				deleteMetaData(
+					$(this)
+						.parents('.meta-object')
+						.attr('data-key'),
+				);
+			},
+		});
 	});
 };
 
