@@ -2,6 +2,7 @@ import $ from 'jquery';
 import firebaseDatabase, { uploadHtml, uploadImage, saveMetaData } from './firebase';
 import createMetaHtml from './meta';
 import getTimestamp from './time';
+import { config } from './appConfig';
 
 import '../css/index/index.css';
 import '../../node_modules/font-awesome/css/font-awesome.css';
@@ -29,7 +30,7 @@ const drawRecentList = (snapshot) => {
 
 const getLinkLists = () => {
 	firebaseDatabase
-		.ref('meta')
+		.ref(config.user)
 		.orderByChild('update')
 		.on('value', (snapshot) => {
 			$('.recent .list .meta-object').not('.meta-object-template').remove();

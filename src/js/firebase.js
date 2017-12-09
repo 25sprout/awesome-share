@@ -1,5 +1,5 @@
 import * as firebase from 'firebase';
-import { firebaseConfig } from './appConfig';
+import { config, firebaseConfig } from './appConfig';
 
 firebase.initializeApp(firebaseConfig);
 
@@ -11,7 +11,7 @@ export const uploadImage = (imageBlob) => {
 	const timestamp = new Date().getTime();
 
 	return firebase.storage()
-		.ref()
+		.ref(config.user)
 		.child(`cover-${timestamp}.jpg`)
 		.put(imageBlob);
 };
@@ -20,14 +20,14 @@ export const uploadHtml = (metaBlob) => {
 	const timestamp = new Date().getTime();
 
 	return firebase.storage()
-		.ref()
+		.ref(config.user)
 		.child(`meta-${timestamp}.html`)
 		.put(metaBlob);
 };
 
 export const saveMetaData = (metaData) => (
 	firebase.database()
-		.ref('meta')
+		.ref(config.user)
 		.push(metaData)
 );
 

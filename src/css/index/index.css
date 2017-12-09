@@ -28,6 +28,36 @@ body {
 	}
 }
 
+.login-wrapper {
+	display: flex;
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 12px;
+	padding: 30px;
+
+	& > div {
+		width: 50%;
+		padding: 8px;
+		color: var(--darkGray);
+		line-height: 1;
+		border-radius: 4px;
+		cursor: pointer;
+		margin: 0 4px;
+		transition: all 0.3s;
+
+		&.active {
+			background: var(--darkGray);
+			color: var(--black);
+		}
+
+		&:hover {
+			background: var(--gray);
+			color: var(--black);
+		}
+	}
+}
+
 .feature {
 	width: 30%;
 	box-sizing: border-box;
