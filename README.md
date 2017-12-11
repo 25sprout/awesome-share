@@ -2,6 +2,8 @@
 
 使用 Firebase Storage & Database 打造純前端的 Sharing Meta 產生器。
 
+- [Website](https://25sprout.github.io/awesome-share/)
+
 ### 產生邏輯
 
 - 新增一筆分享資料時，寫入包含 meta 資訊的 html 至 firebase storage。
