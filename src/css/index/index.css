@@ -290,10 +290,15 @@ body {
 					& > i {
 						display: none;
 						position: absolute;
-						top: 40px;
+						top: 48%;
 						left: 50%;
 						margin-left: -5px;
 						color: var(--lightGray);
+					}
+
+					&.loading {
+						height: 150px;
+						background: var(--darkGray);
 					}
 
 					&.loading > i {

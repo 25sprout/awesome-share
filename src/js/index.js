@@ -103,6 +103,7 @@ const formAction = () => {
 	});
 
 	$('.image-upload').on('change', () => {
+		$('.preview .card').addClass('_show');
 		$('.preview .cover').addClass('loading');
 
 		const file = document.querySelector('input[type=file]').files[0];
@@ -121,16 +122,21 @@ const formAction = () => {
 				$('.image-upload-group i')
 					.addClass('fa-cloud-upload')
 					.removeClass('fa-spinner fa-spin');
-
-				$('.preview .cover').removeClass('loading');
-				$('.preview .card').addClass('_show');
 			});
 		}
 	});
 
 	$(`[name='meta-image']`).on('change', function () {
+		if ($(this).val()) {
+			$('.preview .card').addClass('_show');
+		}
+
 		$('.preview .cover img').attr('src', $(this).val());
 	});
+
+	$('.preview .cover img')[0].onload = () => {
+		$('.preview .cover').removeClass('loading');
+	};
 
 	$(`[name='meta-title']`).on('keyup', function () {
 		if ($(this).val()) {
