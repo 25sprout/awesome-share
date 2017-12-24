@@ -10,6 +10,7 @@ import createMetaHtml from './meta';
 import getTimestamp from './time';
 import { getLinkLists } from './recentList';
 import authAction from './login';
+import getVideoSnippet, { youtubeParser } from './youtube';
 
 import '../css/index/index.css';
 
@@ -145,6 +146,35 @@ const formAction = () => {
 		}
 
 		$('.card .description').text($(this).val());
+	});
+
+	let videoId;
+
+	$(`[name='meta-url']`).on('keyup', function () {
+		const metaUrl = $(this).val();
+
+		if ($(`[name='meta-title']`).val() || $(`[name='meta-description']`).val()) {
+			return;
+		}
+
+		if (!metaUrl || !youtubeParser(metaUrl)) {
+			return;
+		}
+
+		if (videoId === youtubeParser(metaUrl)) {
+			return;
+		}
+
+		videoId = youtubeParser(metaUrl);
+
+		getVideoSnippet(videoId)
+			.then(({ title, description, image }) => {
+				$(`[name='meta-title']`).val(title).keyup();
+				$(`[name='meta-description']`).val(description).keyup();
+				$(`[name='meta-image']`).val(image).change();
+
+				$('.preview .card').addClass('_show');
+			});
 	});
 };
 
